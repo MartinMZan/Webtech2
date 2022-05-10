@@ -1,0 +1,73 @@
+<mat-card>
+
+    <mat-card-title align="center">Új termék</mat-card-title>
+
+    <form [formGroup]="termekFormGroup">
+        <div class="row">
+            <mat-form-field appearance="fill" class="col-lg-8">
+                <mat-label>Termék neve</mat-label>
+                <input type="text" matInput formControlName="name">
+            </mat-form-field>
+            <div *ngIf="termekFormGroup.controls.name.touched === true">
+                <mat-error *ngIf="termekFormGroup.controls.name.hasError('required')">
+                    Mező kitöltése kötelező
+                </mat-error>
+                <mat-error *ngIf="termekFormGroup.controls.name.hasError('maxlength')">
+                    A megadott input maximum 20 karakter lehet!
+                </mat-error>
+            </div>
+            <mat-form-field appearance="fill" class="col-lg-8">
+                <mat-label>Leírás</mat-label>
+                <input type="text" matInput formControlName="description">
+            </mat-form-field>
+            <div *ngIf="termekFormGroup.controls.description.touched === true">
+                <mat-error *ngIf="termekFormGroup.controls.description.hasError('required')">
+                    Mező kitöltése kötelező
+                </mat-error>
+                <mat-error *ngIf="termekFormGroup.controls.description.hasError('maxlength')">
+                    A megadott input maximum 20 karakter lehet!
+                </mat-error>
+            </div>
+            <mat-form-field class="example-full-width" appearance="fill" class="col-lg-8">
+                <mat-label>Lejárati dátum</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="termekFormGroup.controls.date.touched === true">
+                <mat-error *ngIf="termekFormGroup.controls.date.hasError('required')">
+                    Mező kitöltése kötelező
+                </mat-error>
+                <mat-error *ngIf="termekFormGroup.controls.date.hasError('maxlength')">
+                    A megadott input maximum 20 karakter lehet!
+                </mat-error>
+            </div>
+
+            <mat-form-field appearance="fill" class="col-lg-8">
+                <mat-label>Termék ára</mat-label>
+                <input type="number" matInput formControlName="price">
+            </mat-form-field>
+            <div *ngIf="termekFormGroup.controls.price.touched === true">
+                <mat-error *ngIf="termekFormGroup.controls.price.hasError('required')">
+                    Mező kitöltése kötelező
+                </mat-error>
+            </div>
+
+            <mat-form-field appearance="fill" class="col-lg-8">
+                <mat-label>Mennyiség</mat-label>
+                <input type="number" matInput formControlName="amount">
+            </mat-form-field>
+            <div *ngIf="termekFormGroup.controls.amount.touched === true">
+                <mat-error *ngIf="termekFormGroup.controls.amount.hasError('required')">
+                    Mező kitöltése kötelező
+                </mat-error>
+            </div>
+        </div>
+        <div>
+            <button mat-raised-button matDialogClose>Vissza</button>
+            <button color="primary" [disabled]="!termekFormGroup.valid" (click)="createProduct()" mat-raised-button
+                matDialogClose class="buttonColorize">Létrehozás</button>
+        </div>
+    </form>
+
+</mat-card>
